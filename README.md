@@ -58,7 +58,27 @@ Access the `config.php` script from a browser:
 
 If you get any warnings or recommendations, fix them before moving on.
 
-3) Browsing the Demo Application
+3) Setting up Environments
+--------------------------
+
+In the Multi Domain Edition the structure of the config/ directory is a little bit diffrent from the structure of the
+standard editions. The Configs for the different environments ar in the environment/ directory. The configuration files
+located there should all include the global config files located directly in the config/ directory.
+The app/config/server.json tells the Kernel which domain should point to which environment.
+
+### Common behavior
+1) If the kernel could not find a server.json it will try determinating the server name and environment by the first param
+of the (App)Kernel::__construct() method.
+
+2) If there is a server.json the Kernel will try finding a match with the configured domains and the current. If there is
+no match the 'fallback' values will be used and if there are no or only partially fallback values the values from 1) will
+be used/combined used.
+
+### Global config parameters
+You can use the %kernel.server_name% and %kernel.server_environment% parameter in your config for easy including of your
+routing files in a global config.
+
+4) Browsing the Demo Application
 --------------------------------
 
 Congratulations! You're now ready to use Symfony.
@@ -73,7 +93,7 @@ To see a real-live Symfony page in action, access the following page:
 
     web/app_dev.php/demo/hello/Fabien
 
-4) Getting started with Symfony
+5) Getting started with Symfony
 -------------------------------
 
 This distribution is meant to be the starting point for your Symfony
