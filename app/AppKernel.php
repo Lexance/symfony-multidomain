@@ -1,9 +1,6 @@
 <?php
 
-use Symfony\Component\HttpKernel\Kernel;
-use Symfony\Component\Config\Loader\LoaderInterface;
-
-class AppKernel extends Kernel
+class AppKernel extends MultiDomainKernel
 {
     public function registerBundles()
     {
@@ -21,7 +18,7 @@ class AppKernel extends Kernel
             new JMS\SecurityExtraBundle\JMSSecurityExtraBundle(),
         );
 
-        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+        if (\in_array($this->getServerEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Acme\DemoBundle\AcmeDemoBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
@@ -31,8 +28,33 @@ class AppKernel extends Kernel
         return $bundles;
     }
 
-    public function registerContainerConfiguration(LoaderInterface $loader)
+    /**
+     * This method should return an array with the default values which are
+     * used when the passed $environment param from the __constructor method
+     * is only a server environment or an
+     *
+     * @return array
+     */
+    public function getDefaultEnvironment()
     {
-        $loader->load(__DIR__.'/config/config_'.$this->getEnvironment().'.yml');
+        return array('name' => 'default',
+                     'environment' => 'dev');
+    }
+
+    /**
+     * Returns possible server environment postfixes like 'dev', 'prod' or 'test'.
+     *
+     * @return array
+     */
+    protected function getServerEnvironments() {
+        return array('dev', 'prod', 'test');
+    }
+
+    /**
+     * @param \Symfony\Component\Config\Loader\LoaderInterface $loader
+     */
+    public function registerContainerConfiguration(\Symfony\Component\Config\Loader\LoaderInterface $loader)
+    {
+        $loader->load(__DIR__.'/config/environments/'.$this->getServerName().'/config_'.$this->getServerEnvironment().'.yml');
     }
 }

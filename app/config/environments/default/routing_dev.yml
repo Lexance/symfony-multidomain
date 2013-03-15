@@ -1,0 +1,5 @@
+_prod:
+    resource: routing_prod.yml
+
+_global_dev:
+    resource: ../../routing_dev.yml
