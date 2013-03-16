@@ -1,0 +1,24 @@
+{
+    "environments": {
+        "80": "prod",
+        "1337": {
+            "name": "dev",
+            "debug": true
+        },
+        "7331": {
+            "name": "test",
+            "debug": true
+        }
+    },
+    "names": {
+        "default": [
+            "localhost",
+            "127.0.0.1"
+        ]
+    },
+    "fallback": {
+        "environment": "prod",
+        "name": "default",
+        "debug": false
+    }
+}
