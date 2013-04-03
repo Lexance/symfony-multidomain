@@ -5,6 +5,8 @@
 framework:
     router:
         strict_requirements: null
+    #validation:
+    #    cache: apc
 
 #doctrine:
 #    orm:
