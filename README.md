@@ -1,8 +1,10 @@
-Symfony Standard Edition
+Symfony Multidomain Edition
 ========================
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony2
-application that you can use as the skeleton for your new applications.
+Welcome to the Symfony Multidomain Edition - a fully-functional Symfony2
+**fork** for Multidomain Projects.
+
+**Step 4** describes how to use the features of the Multidomain edition.
 
 This document contains information on how to download, install, and start
 using Symfony. For a more detailed explanation, see the [Installation][1]
